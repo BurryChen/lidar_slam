@@ -28,7 +28,8 @@
           -configuration_directory $(find lidar_slam)/configuration_files
           -configuration_basename backpack_2d.lua"
       output="screen">
-    <remap from="echoes" to="horizontal_laser_2d" />
+    <remap from="echoes_1" to="horizontal_laser_2d" />
+    <remap from="echoes_2" to="vertical_laser_2d" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

@@ -73,19 +73,19 @@
   <joint name="horizontal_laser_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="horizontal_laser_link" />
-    <origin rpy="0 0 0" xyz="0.1 0.2 0.75" />
+    <origin rpy="0 0 0" xyz="0 0 0.75" />
   </joint>
 
-  <joint name="horizontal_laser_link_joint" type="fixed">
+  <joint name="vertical_right_laser_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="vertical_right_laser_link" />
-    <origin rpy="-1.570796 0 1.570796" xyz="0.1 0.2 0.5" />
+    <origin rpy="-1.570796 1.570796 0" xyz="0.1 0.2 0.5" />
   </joint>
   
-  <joint name="horizontal_laser_link_joint" type="fixed">
+  <joint name="vertical_left_laser_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="vertical_left_laser_link" />
-    <origin rpy="1.570796 0 -1.570796" xyz="0.1 -0.2 0.3" />
+    <origin rpy="0 1.570796 0 " xyz="0.1 -0.2 0.3" />
   </joint>
 
 </robot>
