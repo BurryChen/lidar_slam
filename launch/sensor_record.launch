@@ -1,0 +1,62 @@
+<!--
+  Copyright 2016 The Cartographer Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<launch>  
+
+  <param name="/use_sim_time" value="false" />
+  <param name="robot_description"
+    textfile="$(find lidar_slam)/urdf/hokuyo_IMU.urdf" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+    
+  <node name="hokuyo0" pkg="hokuyo_node" type="hokuyo_node" > 
+   <remap from="scan" to="horizontal_laser_2d" />
+    <param name="port" type="string" value="/dev/ttyACM1"/>  
+    <param name="min_ang"  value="-2.356194490125"/>  
+    <param name="max_ang"  value="2.356194490125"/>  
+    <param name="frame_id"  value="horizontal_laser_link"/>  
+  </node>
+  
+  <node name="hokuyo1" pkg="hokuyo_node" type="hokuyo_node" > 
+   <remap from="scan" to="vertical_right_laser_2d" />
+    <param name="port" type="string" value="/dev/ttyACM0"/>  
+    <param name="min_ang"  value="-2.356194490125"/>  
+    <param name="max_ang"  value="2.356194490125"/>  
+    <param name="frame_id"  value="vertical_right_laser_link"/>  
+  </node>
+  
+    <node name="hokuyo2" pkg="hokuyo_node" type="hokuyo_node" > 
+   <remap from="scan" to="vertical_left_laser_2d" />
+    <param name="port" type="string" value="/dev/ttyACM2"/>  
+    <param name="min_ang"  value="-2.356194490125"/>  
+    <param name="max_ang"  value="2.356194490125"/>  
+    <param name="frame_id"  value="vertical_left_laser_link"/>  
+  </node>
+ 
+
+<!--  <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
+   <param name="frame_id"  value="imu_link"/>  
+  </node>-->
+
+  <node pkg="rosbag" type="record" name="record" 
+  output="screen" args="-o /home/whu/data/whuplat/threelidar  /horizontal_laser_2d /vertical_right_laser_2d /vertical_left_laser_2d"/> 
+
+
+
+</launch>
+
+
