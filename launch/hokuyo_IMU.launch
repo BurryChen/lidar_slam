@@ -31,7 +31,7 @@
   </node>
  
  
-  <node pkg="xsens_driver" type="xsens_publisher" name="imu" >
+  <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
    <param name="frame_id"  value="imu_link"/>  
   </node>
 
