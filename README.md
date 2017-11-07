@@ -44,7 +44,11 @@ roslaunch cartographer_ros hokuyo_IMU.launch
 sudo chmod a+rw /dev/ttyACM0 
 roslaunch cartographer_ros demo_hokuyo.launch
 
--------------------------------------------   20171105
-1)github
+-------------------------------------------   20171107
+1)cmd 调试:
+/home/whu/slam_ws/install/lib/cartographer_ros/cartographer_node -configuration_directory /home/whu/slam_ws/install/share/lidar_slam/configuration_files -configuration_basename backpack_2d.lua echoes_1:=horizontal_laser_2d echoes_2:=vertical_laser_2d __name:=cartographer_node
+
+
+/home/whu/slam_ws/install/lib/cartographer_ros/cartographer_node -configuration_directory /home/whu/slam_ws/install/share/cartographer_ros/configuration_files -configuration_basename backpack_2d.lua echoes:=horizontal_laser_2d __name:=cartographer_node
 
 
