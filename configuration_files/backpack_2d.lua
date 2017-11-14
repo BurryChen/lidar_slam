@@ -25,7 +25,7 @@ options = {
   provide_odom_frame = true,
   use_odometry = false,
   num_laser_scans = 0,
-  num_multi_echo_laser_scans = 2,
+  num_multi_echo_laser_scans = 1,
   num_subdivisions_per_laser_scan = 10,
   num_point_clouds = 0,
   lookup_transform_timeout_sec = 0.2,
@@ -39,5 +39,7 @@ options = {
 
 MAP_BUILDER.use_trajectory_builder_2d = true
 TRAJECTORY_BUILDER_2D.scans_per_accumulation = 10
+
+TRAJECTORY_BUILDER_2D.use_imu_data = false
 
 return options

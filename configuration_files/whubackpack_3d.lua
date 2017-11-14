@@ -24,11 +24,10 @@ options = {
   odom_frame = "odom",
   provide_odom_frame = true,
   use_odometry = false,
-  num_laser_scans = 1,
-  
+  num_laser_scans = 0,
   num_multi_echo_laser_scans = 0,
   num_subdivisions_per_laser_scan = 1,
-  num_point_clouds = 0,
+  num_point_clouds = 1,
   lookup_transform_timeout_sec = 0.2,
   submap_publish_period_sec = 0.3,
   pose_publish_period_sec = 5e-3,
@@ -38,21 +37,20 @@ options = {
   imu_sampling_ratio = 1.,
 }
 
-MAP_BUILDER.use_trajectory_builder_2d = true
-TRAJECTORY_BUILDER_2D.scans_per_accumulation = 1
-
-TRAJECTORY_BUILDER_2D.min_range = 0.3
-TRAJECTORY_BUILDER_2D.max_range = 30.
-TRAJECTORY_BUILDER_2D.min_z = -0.5
-TRAJECTORY_BUILDER_2D.max_z = 1
-TRAJECTORY_BUILDER_2D.use_imu_data = false
-
--- SPARSE_POSE_GRAPH.optimize_every_n_scans = 30 
--- TRAJECTORY_BUILDER_2D.submaps.num_range_data = 30 
-TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true 
--- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight=20 
--- TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight=20 
+TRAJECTORY_BUILDER_3D.scans_per_accumulation = 1
 
 
+MAP_BUILDER.use_trajectory_builder_3d = true
+MAP_BUILDER.num_background_threads = 7
+SPARSE_POSE_GRAPH.optimization_problem.huber_scale = 5e2
+SPARSE_POSE_GRAPH.optimize_every_n_scans = 30
+SPARSE_POSE_GRAPH.constraint_builder.sampling_ratio = 0.3
+SPARSE_POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 20
+SPARSE_POSE_GRAPH.constraint_builder.min_score = 0.62
+
+
+TRAJECTORY_BUILDER_3D.min_range =0.3
+TRAJECTORY_BUILDER_3D.max_range = 10
+TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching=true
 
 return options

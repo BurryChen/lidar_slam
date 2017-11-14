@@ -52,3 +52,29 @@ roslaunch cartographer_ros demo_hokuyo.launch
 /home/whu/slam_ws/install/lib/cartographer_ros/cartographer_node -configuration_directory /home/whu/slam_ws/install/share/cartographer_ros/configuration_files -configuration_basename backpack_2d.lua echoes:=horizontal_laser_2d __name:=cartographer_node
 
 
+valgrind --tool=callgrind
+
+--------------------------------------------- 20180130
+velodyne 的启动
+-----------------
+1銆両nstall Driver
+
+$ sudo apt-get install ros-VERSION-velodyne
+2銆丆onnect to the LIDAR
+
+    Power the LIDAR via the included adapter
+    Connect the LIDAR to an Ethernet port on your computer.
+    Statically assign an IP to this port in the 192.168.3.x range. 
+
+$sudo ifconfig eth0 192.168.1.100
+
+$sudo route add 192.168.1.201 eth0  每次roslaunch都要重新设置,关闭无线网络
+
+3 View Data
+
+$roslaunch velodyne_pointcloud 32e_points.launch calibration:=/opt/ros/indigo/share/velodyne_pointcloud/params/32db.yaml
+
+$rosrun rviz rviz -f velodyne
+
+线头的对面是y;
+

@@ -71,7 +71,7 @@ Visualization Manager:
         All Enabled: true
         base_link:
           Value: true
-        horizontal_vlp16_link:
+        velodyne_32E_link:
           Value: true
         imu_link:
           Value: true
@@ -90,7 +90,7 @@ Visualization Manager:
         map:
           odom:
             base_link:
-              horizontal_vlp16_link:
+              velodyne_32E_link:
                 {}
               imu_link:
                 {}
@@ -112,7 +112,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        horizontal_vlp16_link:
+        velodyne_32E_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false

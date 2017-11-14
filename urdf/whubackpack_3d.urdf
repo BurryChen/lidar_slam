@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 
-<robot name="cartographer_backpack_2d">
+<robot name="cartographer_backpack_3d">
   <material name="orange">
     <color rgba="1.0 0.5 0.2 1" />
   </material>
@@ -24,7 +24,7 @@
 
   <link name="imu_link">
     <visual>
-      <origin xyz="0 0 0" />
+      <origin xyz="0.0 0.0 0.0" />
       <geometry>
         <box size="0.06 0.04 0.02" />
       </geometry>
@@ -32,21 +32,12 @@
     </visual>
   </link>
 
-  <link name="horizontal_laser_link">
-    <visual>
-      <origin xyz="0 0 0" />
-      <geometry>
-        <cylinder length="0.05" radius="0.03" />
-      </geometry>
-      <material name="gray" />
-    </visual>
-  </link>
 
-  <link name="vertical_laser_link">
+  <link name="velodyne_32E_link">
     <visual>
-      <origin xyz="0 0 0" />
+      <origin xyz="0.0 0.0 0.0" />
       <geometry>
-        <cylinder length="0.05" radius="0.03" />
+        <cylinder length="0.07" radius="0.05" />
       </geometry>
       <material name="gray" />
     </visual>
@@ -57,18 +48,13 @@
   <joint name="imu_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu_link" />
-    <origin rpy="0 0 0" xyz="0 0 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
-  <joint name="horizontal_laser_link_joint" type="fixed">
+  <joint name="velodyne_32E_link_joint" type="fixed">
     <parent link="base_link" />
-    <child link="horizontal_laser_link" />
-    <origin xyz="0.1007 0 0.0558" />
+    <child link="velodyne_32E_link" />
+    <origin xyz="0. 0. 0.1" rpy="0. 0. 0.0" />
   </joint>
 
-  <joint name="vertical_laser_link_joint" type="fixed">
-    <parent link="base_link" />
-    <child link="vertical_laser_link" />
-    <origin rpy="0 -1.570796 3.141593" xyz="0.1007 0 0.1814" />
-  </joint>
 </robot>

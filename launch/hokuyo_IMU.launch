@@ -32,7 +32,8 @@
  
  
   <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
-   <param name="frame_id"  value="imu_link"/>  
+   <param name="port" type="string" value="/dev/USB0" />
+<!--   <param name="frame_id"  value="imu_link"/>  -->
   </node>
 
   <node pkg="rosbag" type="record" name="record" output="screen" args="-o /home/whu/data/whuplat/lidarxsens -a"/> 
@@ -43,7 +44,7 @@
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
           -configuration_directory $(find cartographer_ros)/configuration_files
-          -configuration_basename hokuyo_IMU.lua"
+          -configuration_basename three_hokuyo.lua"
       output="screen">
     <remap from="scan" to="horizontal_laser_2d" />
   </node>

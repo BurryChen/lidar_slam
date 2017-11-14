@@ -19,10 +19,12 @@
    
   <param name="/use_sim_time" value="false" />
   <param name="robot_description"
-    textfile="$(find lidar_slam)/urdf/three_hokuyo.urdf" />
+    textfile="$(find lidar_slam)/urdf/three_hokuyo_ydy2.urdf" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher"
     type="robot_state_publisher" />
+    
+ <include file="$(find lidar_slam)/launch/sensor_record.launch" />
 
   <node name="cartographer_node" pkg="cartographer_ros"  type="cartographer_node" args="
   -configuration_directory $(find lidar_slam)/configuration_files  
@@ -30,15 +32,16 @@
   <remap from="scan_1" to="horizontal_laser_2d" />
   <remap from="scan_2" to="vertical_right_laser_2d" />
   <remap from="scan_3" to="vertical_left_laser_2d" />
+
   
   </node>   
 
 
   <node name="rviz" pkg="rviz" type="rviz" required="true" args="-d $(find lidar_slam)/configuration_files/demo_2d.rviz" />
-  
-    <include file="$(find lidar_slam)/launch/sensor_record.launch" />
-<!--  <node name="playbag" pkg="rosbag" type="play"
-      args="-clock $(arg bag_filename)" />-->
+  <!-- 
+  <node name="playbag" pkg="rosbag" type="play" args="-clock $(arg bag_filename)" />
+  -->
+
     
 </launch>
 
