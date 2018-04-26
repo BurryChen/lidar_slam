@@ -29,8 +29,8 @@
           -configuration_directory $(find lidar_slam)/configuration_files
           -configuration_basename whubackpack_3d.lua"
       output="screen">
-    <remap from="points2" to="velodyne_32E_3d" />
-<!--     <remap from="points2_2" to="vertical_laser_3d" /> -->
+    <remap from="points2_1" to="horizontal_laser_3d" />
+    <remap from="points2_2" to="vertical_laser_3d" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

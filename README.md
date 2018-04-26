@@ -8,7 +8,7 @@ roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:=${HOME}/Downloa
 
 roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:=/home/whu/data/cartographer_paper_deutsches_museum.bag
 
-roslaunch cartographer_ros offline_backpack_2d.launch bag_filenames:=/home/whu/data/cartographer_paper_deutsches_museum.bag
+roslaunch cartographer_ros offline_backpack_2d.launch bag_filenames:=/home/whu/data/cartographerdata/cartographer_paper_deutsches_museum.bag
 
 
  
@@ -42,7 +42,7 @@ roslaunch cartographer_ros hokuyo_IMU.launch
 4）myself  hokuyo
 
 sudo chmod a+rw /dev/ttyACM0 
-roslaunch cartographer_ros demo_hokuyo.launch
+roslaunch lidar_slam demo_hokuyo.launch
 
 -------------------------------------------   20171107
 1)cmd 调试:
@@ -72,9 +72,14 @@ $sudo route add 192.168.1.201 eth0  每次roslaunch都要重新设置,关闭无�
 
 3 View Data
 
-$roslaunch velodyne_pointcloud 32e_points.launch calibration:=/opt/ros/indigo/share/velodyne_pointcloud/params/32db.yaml
+$roslaunch velodyne_pointcloud 32e_points.launch calibration:=/opt/ros/kinetic/share/velodyne_pointcloud/params/32db.yaml
 
 $rosrun rviz rviz -f velodyne
 
 线头的对面是y;
+
+-----------------------------------------20180426
+2 VLP-16 3D
+1、静态网络配置后，重启网络：sudo /etc/init.d/networking restart
+2、roslaunch lidar_slam mul_vlp16_record.launch 
 

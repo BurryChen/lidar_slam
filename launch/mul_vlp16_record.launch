@@ -1,0 +1,56 @@
+<!--
+  Copyright 2016 The Cartographer Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<launch>  
+
+  <param name="/use_sim_time" value="false" />
+    
+  <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
+   <param name="frame_id"  value="imu_link"/>  
+  </node>
+
+  <group >
+    <remap from="velodyne_points" to="horizontal_laser_3d" />
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+     <arg name="device_ip" value="192.168.1.201"/>
+     <arg name="port" value="2368"/>
+     <arg name="frame_id" value="horizontal_vlp16_link"/>
+     <!--arg name="ns" value="horizontal_vlp16_link"/-->   
+    </include>
+  </group>
+
+  <group >
+  <remap from="velodyne_points" to="vertical_laser_3d"/>
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+     <arg name="device_ip" value="192.168.1.202"/>
+     <arg name="port" value="2369"/>
+     <arg name="frame_id" value="vertical_vlp16_link"/>
+  </include>
+  </group>
+
+
+  <node pkg="rosbag" type="record" name="record" 
+  output="screen" args="-o /home/whu/data/whuplat/VLP16/ /velodyne_points /imu /horizontal_laser_3d /vertical_laser_3d"/> 
+
+ 
+<!--    <node pkg="rosbag" type="record" name="record" 
+  output="screen" args="-o /home/whu/data/whuplat/lidar2IMU /imu /horizontal_laser_2d /vertical_left_laser_2d"/> -->
+
+
+
+</launch>
+
+
