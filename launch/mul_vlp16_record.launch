@@ -17,34 +17,35 @@
 <launch>  
 
   <param name="/use_sim_time" value="false" />
-    
+ 
+ 
   <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
    <param name="frame_id"  value="imu_link"/>  
   </node>
-
-  <group >
-    <remap from="velodyne_points" to="horizontal_laser_3d" />
-    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+  
+  
+  <group ns="ns1">
+   <remap from="velodyne_points" to="horizontal_laser_3d" />
+   <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
      <arg name="device_ip" value="192.168.1.201"/>
      <arg name="port" value="2368"/>
      <arg name="frame_id" value="horizontal_vlp16_link"/>
-     <!--arg name="ns" value="horizontal_vlp16_link"/-->   
-    </include>
+   </include>
   </group>
 
-  <group >
-  <remap from="velodyne_points" to="vertical_laser_3d"/>
-  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" >
+  <group ns="ns2">
+    <remap from="velodyne_points" to="vertical_laser_3d" />
+   <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
      <arg name="device_ip" value="192.168.1.202"/>
      <arg name="port" value="2369"/>
      <arg name="frame_id" value="vertical_vlp16_link"/>
-  </include>
+   </include>
   </group>
 
-
   <node pkg="rosbag" type="record" name="record" 
-  output="screen" args="-o /home/whu/data/whuplat/VLP16/ /velodyne_points /imu /horizontal_laser_3d /vertical_laser_3d"/> 
+  output="screen" args="-o /home/whu/data/WHUKylinBackpack/3D_VLP16 /velodyne_points /imu ns1/horizontal_laser_3d ns2/vertical_laser_3d"/> 
 
+  <node pkg="tf" type="static_transform_publisher" name="tf_h2v" args="0 0.05 -0.1 0 0 0 1 /horizontal_vlp16_link /vertical_vlp16_link 100" />
  
 <!--    <node pkg="rosbag" type="record" name="record" 
   output="screen" args="-o /home/whu/data/whuplat/lidar2IMU /imu /horizontal_laser_2d /vertical_left_laser_2d"/> -->

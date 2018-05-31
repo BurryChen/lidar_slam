@@ -48,19 +48,17 @@ roslaunch lidar_slam demo_hokuyo.launch
 1)cmd 调试:
 /home/whu/slam_ws/install/lib/cartographer_ros/cartographer_node -configuration_directory /home/whu/slam_ws/install/share/lidar_slam/configuration_files -configuration_basename backpack_2d.lua echoes_1:=horizontal_laser_2d echoes_2:=vertical_laser_2d __name:=cartographer_node
 
-
 /home/whu/slam_ws/install/lib/cartographer_ros/cartographer_node -configuration_directory /home/whu/slam_ws/install/share/cartographer_ros/configuration_files -configuration_basename backpack_2d.lua echoes:=horizontal_laser_2d __name:=cartographer_node
-
 
 valgrind --tool=callgrind
 
 --------------------------------------------- 20180130
 velodyne 的启动
 -----------------
-1銆両nstall Driver
+1. install Driver
 
 $ sudo apt-get install ros-VERSION-velodyne
-2銆丆onnect to the LIDAR
+2 connect to the LIDAR
 
     Power the LIDAR via the included adapter
     Connect the LIDAR to an Ethernet port on your computer.
@@ -76,10 +74,15 @@ $roslaunch velodyne_pointcloud 32e_points.launch calibration:=/opt/ros/kinetic/s
 
 $rosrun rviz rviz -f velodyne
 
-线头的对面是y;
+线头的正对面是+X,上方是+Z，右手法则
 
 -----------------------------------------20180426
-2 VLP-16 3D
-1、静态网络配置后，重启网络：sudo /etc/init.d/networking restart
-2、roslaunch lidar_slam mul_vlp16_record.launch 
-
+VLP-16 3D data record  
+1. Setting->Eidt connections
+ https://jingyan.baidu.com/article/86fae346d096093c49121a30.html
+ //restart network：
+ $ sudo /etc/init.d/networking restart
+ //test 
+ $ ifconfig 
+ $ ping 192.168.1.201
+2. roslaunch lidar_slam mul_vlp16_record.launch 
