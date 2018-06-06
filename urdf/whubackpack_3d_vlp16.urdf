@@ -1,4 +1,4 @@
-whubackpack_3d.urdf<!--
+<!--
   Copyright 2016 The Cartographer Authors
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -57,18 +57,19 @@ whubackpack_3d.urdf<!--
   <joint name="imu_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu_link" />
-    <origin xyz="0 0 0" rpy="3.1416 0 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <!--<origin xyz="0.165 -0.02 -0.36" rpy="0 0 0" />-->
   </joint>
 
   <joint name="horizontal_vlp16_link_joint" type="fixed">
     <parent link="base_link" />
     <child link="horizontal_vlp16_link" />
-    <origin xyz="0.01 0. 0.19" rpy="0. -0.1745 3.1416" />
+    <origin xyz="-0.165 0.02 0.36" rpy="0 0 0" />
   </joint>
 
   <joint name="vertical_vlp16_link_joint" type="fixed">
-    <parent link="base_link" />
+    <parent link="horizontal_vlp16_link" />
     <child link="vertical_vlp16_link" />
-    <origin xyz="0.19 0. 0.04" rpy="0. 1.3963 0." />
+    <origin xyz="0.11453 0.0138586 -0.134201" rpy="-0.0354785760034 0.745448454102 0.036758565246" />
   </joint>
 </robot>

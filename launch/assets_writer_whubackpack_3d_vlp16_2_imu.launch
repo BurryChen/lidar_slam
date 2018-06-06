@@ -18,8 +18,8 @@
   <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
       type="cartographer_assets_writer" args="
           -configuration_directory $(find lidar_slam)/configuration_files
-          -configuration_basename assets_writer_whubackpack_3d.lua
-          -urdf_filename $(find lidar_slam)/urdf/whubackpack_3d.urdf
+          -configuration_basename assets_writer_backpack_3d_vlp16_2_imu.lua
+          -urdf_filename $(find lidar_slam)/urdf/whubackpack_3d_vlp16.urdf
           -bag_filenames $(arg bag_filenames)
           -pose_graph_filename $(arg pose_graph_filename)"
       output="screen">

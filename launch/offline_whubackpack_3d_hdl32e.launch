@@ -15,22 +15,21 @@
 -->
 
 <launch>
-  <param name="robot_description"
-    textfile="$(find lidar_slam)/urdf/whubackpack_3d.urdf" />
-    
-  <node name="rviz" pkg="rviz" type="rviz" required="true" 
-          args="-d $(find lidar_slam)/configuration_files/whubackpack_3d.rviz" />
+  <param name="/use_sim_time" value="true" />
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher"
-    type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+        args="-d $(find lidar_slam)/configuration_files/whubackpack_3d.rviz" />
 
-  <node name="cartographer_node" pkg="cartographer_ros"
-      type="cartographer_node" args="
+  <node name="cartographer_offline_node" pkg="cartographer_ros"
+      type="cartographer_offline_node" args="
           -configuration_directory $(find lidar_slam)/configuration_files
-          -configuration_basename whubackpack_3d.lua"
+          -configuration_basename whubackpack_3d.lua
+          -urdf_filename $(find lidar_slam)/urdf/whubackpack_3d_32E.urdf
+          -bag_filenames $(arg bag_filenames)"
       output="screen">
-    <remap from="points2_1" to="horizontal_laser_3d" />
-    <remap from="points2_2" to="vertical_laser_3d" />
+<!--    <remap from="points2_1" to="horizontal_laser_3d" />
+    <remap from="points2_2" to="vertical_laser_3d" />-->
+    <remap from="points2" to="velodyne_32E_3d" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

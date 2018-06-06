@@ -18,11 +18,9 @@
 
   <param name="/use_sim_time" value="false" />
  
- 
   <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
    <param name="frame_id"  value="imu_link"/>  
   </node>
-  
   
   <group ns="ns1">
    <remap from="velodyne_points" to="horizontal_laser_3d" />
@@ -41,17 +39,17 @@
      <arg name="frame_id" value="vertical_vlp16_link"/>
    </include>
   </group>
-
+  
+  <!--static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms 
+  rypr:euler_from_matrix-rzyx=(0.036758565246 0.745448454102 -0.0354785760034)  q=(-0.0232091   0.3637315   0.02357208  0.93091608)
+  <node pkg="tf" type="static_transform_publisher" name="tf_h2v" 
+  args="0.11453 0.0138586 -0.134201 -0.0232091   0.3637315   0.02357208  0.93091608 /horizontal_vlp16_link /vertical_vlp16_link 10" />--> 
+  
   <node pkg="rosbag" type="record" name="record" 
-  output="screen" args="-o /home/whu/data/WHUKylinBackpack/3D_VLP16 /velodyne_points /imu ns1/horizontal_laser_3d ns2/vertical_laser_3d"/> 
+  output="screen" args="-o /home/whu/data/WHUKylinBackpack/3D_VLP16/vlp16_2_imu ns1/horizontal_laser_3d ns2/vertical_laser_3d /imu /tf"/> 
 
-  <node pkg="tf" type="static_transform_publisher" name="tf_h2v" args="0 0.05 -0.1 0 0 0 1 /horizontal_vlp16_link /vertical_vlp16_link 100" />
+
  
-<!--    <node pkg="rosbag" type="record" name="record" 
-  output="screen" args="-o /home/whu/data/whuplat/lidar2IMU /imu /horizontal_laser_2d /vertical_left_laser_2d"/> -->
-
-
-
 </launch>
 
 

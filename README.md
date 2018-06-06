@@ -59,10 +59,8 @@ velodyne 的启动
 
 $ sudo apt-get install ros-VERSION-velodyne
 2 connect to the LIDAR
-
-    Power the LIDAR via the included adapter
-    Connect the LIDAR to an Ethernet port on your computer.
-    Statically assign an IP to this port in the 192.168.3.x range. 
+http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20Velodyne%20VLP16
+http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20HDL-32E
 
 $sudo ifconfig eth0 192.168.1.100
 
@@ -80,9 +78,10 @@ $rosrun rviz rviz -f velodyne
 VLP-16 3D data record  
 1. Setting->Eidt connections
  https://jingyan.baidu.com/article/86fae346d096093c49121a30.html
+ http://wiki.ros.org/velodyne/Tutorials/Getting%20Started%20with%20the%20Velodyne%20VLP16
  //restart network：
  $ sudo /etc/init.d/networking restart
  //test 
  $ ifconfig 
  $ ping 192.168.1.201
-2. roslaunch lidar_slam mul_vlp16_record.launch 
+2. roslaunch lidar_slam record_vlp16_2_imu.launch 
