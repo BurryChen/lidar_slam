@@ -37,7 +37,7 @@ options = {
   imu_sampling_ratio = 1.,
 }
 
-TRAJECTORY_BUILDER_3D.scans_per_accumulation = 2
+TRAJECTORY_BUILDER_3D.scans_per_accumulation = 4
 
 
 MAP_BUILDER.use_trajectory_builder_3d = true

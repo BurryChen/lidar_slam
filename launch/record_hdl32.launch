@@ -18,48 +18,17 @@
 
     <param name="/use_sim_time" value="false" />
     
-  <node name="hokuyo0" pkg="hokuyo_node" type="hokuyo_node" > 
-   <remap from="scan" to="horizontal_laser_2d" />
-    <param name="port" type="string" value="/dev/ttyACM1"/>  
-    <param name="min_ang"  value="-2.356194490125"/>  
-    <param name="max_ang"  value="2.356194490125"/>  
-    <param name="frame_id"  value="horizontal_laser_link"/>  
-  </node>
-  
-  <node name="hokuyo1" pkg="hokuyo_node" type="hokuyo_node" > 
-   <remap from="scan" to="vertical_right_laser_2d" />
-    <param name="port" type="string" value="/dev/ttyACM0"/>  
-    <param name="min_ang"  value="-2.356194490125"/>  
-    <param name="max_ang"  value="2.356194490125"/>  
-    <param name="frame_id"  value="vertical_right_laser_link"/>  
-  </node>
-
-  
-<!--
-  <node name="hokuyo2" pkg="hokuyo_node" type="hokuyo_node" > 
-    <remap from="scan" to="vertical_left_laser_2d" />
-    <param name="port" type="string" value="/dev/ttyACM2"/>  
-    <param name="min_ang"  value="-2.356194490125"/>  
-    <param name="max_ang"  value="2.356194490125"/>  
-    <param name="frame_id"  value="vertical_left_laser_link"/>  
-  </node>
-  -->
-  
- 
-
 <!--  <node pkg="xsens_node" type="xsens_node" name="xsens_node" >
    <param name="frame_id"  value="imu_link"/>  
   </node>-->
 
-
+  <remap from="velodyne_points" to="velodyne_32E_3d" />
+  <include file="$(find velodyne_pointcloud)/launch/32e_points.launch">
+     <arg name="calibration" value="$(find velodyne_pointcloud)/params/32db.yaml"/>
+  </include>
 
   <node pkg="rosbag" type="record" name="record" 
-  output="screen" args="-o /media/whu/Research/LRF_Calibation/data/linuxdata20180408/ /imu /horizontal_laser_2d /vertical_right_laser_2d /vertical_left_laser_2d /velodyne_32E_3d "/> 
-  
-<!--    <node pkg="rosbag" type="record" name="record" 
-  output="screen" args="-o /home/whu/data/whuplat/lidar2IMU /imu /horizontal_laser_2d /vertical_left_laser_2d"/> -->
-
-
+  output="screen" args="-o /media/whu/HD_CHEN_2T/02data/WHUKylinHandheld/3D_HDL32E/ /imu /velodyne_32E_3d "/> 
 
 </launch>
 

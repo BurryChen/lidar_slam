@@ -84,4 +84,6 @@ VLP-16 3D data record
  //test 
  $ ifconfig 
  $ ping 192.168.1.201
-2. roslaunch lidar_slam record_vlp16_2_imu.launch 
+ 
+2. 开启imu权限 sudo chmod 777 /dev/ttyUSB0
+3. roslaunch lidar_slam record_vlp16_2_imu.launch 
